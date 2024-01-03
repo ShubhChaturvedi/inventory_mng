@@ -19,3 +19,5 @@ The application targets users seeking efficient inventory management and data an
 ### Cloud Provider
 - **GCP**: Hosting and implementing the application.
 - **Platform as a Service (PaaS)**: Simplifies development, enhances scalability, availability, and security, allowing focus on improving application features.
+
+### adding soon...
