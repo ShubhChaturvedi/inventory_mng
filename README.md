@@ -20,4 +20,30 @@ The application targets users seeking efficient inventory management and data an
 - **GCP**: Hosting and implementing the application.
 - **Platform as a Service (PaaS)**: Simplifies development, enhances scalability, availability, and security, allowing focus on improving application features.
 
-### adding soon...
+### Clone the repository
+
+1. **Clone the Repository**
+   ```
+   git clone https://github.com/your-username/inventory_mng.git
+   cd inventory_mng
+    ```
+### Running the Application
+1. **Install requirements**
+    ```
+   pip install -r requirements.txt
+    ```
+2. **Run localhost**
+    ```
+    python manage.py makemigrations
+    python manage.py migrate
+    python manage.py runserver
+    ```
+### Running the Application via Docker
+
+1. **Build and Run with Docker**
+    ```
+   docker build -t inventory_mng .
+   docker run -p 8000:8000 inventory_mng
+    ```
+
+
