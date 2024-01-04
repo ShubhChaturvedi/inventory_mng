@@ -2,6 +2,7 @@ from .models import *
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import UserProfileSerializer, UserSerializer
+from rest_framework import status
 # Create your views here.
 
 class UserView(APIView):
@@ -9,6 +10,7 @@ class UserView(APIView):
         users = User.objects.all()
         serializer = UserSerializer(users, many=True)
         return Response({
+            "status": status.HTTP_200_OK,
             "success": True,
             "message": "User List",
             "data": serializer.data
@@ -19,11 +21,13 @@ class UserView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response({
+                "status": status.HTTP_201_CREATED, # "status": "201
                 "success": True,
                 "message": "User Created",
                 "data": serializer.data
             })
         return Response({
+            "status": status.HTTP_400_BAD_REQUEST,
             "success": False,
             "message": "User not created",
             "data": serializer.errors
@@ -34,11 +38,13 @@ class UserView(APIView):
         if user:
             user.delete()
             return Response({
+                "status": status.HTTP_200_OK,
                 "success": True,
                 "message": "User Deleted",
                 "data": []
             })
         return Response({
+            "status": status.HTTP_400_BAD_REQUEST,
             "success": False,
             "message": "User not found",
             "data": []
@@ -50,12 +56,14 @@ class UserOneView(APIView):
         if user:
             serializer = UserSerializer(user)
             return Response({
+                "status": status.HTTP_200_OK,
                 "success": True,
                 "message": "User List",
                 "data": serializer.data
             })
         
         return Response({
+            "status": status.HTTP_400_BAD_REQUEST,
             "success": False,
             "message": "User not found",
             "data": []
@@ -68,6 +76,7 @@ class UserProfileView(APIView):
         users = UserProfile.objects.all()
         serializer = UserProfileSerializer(users, many=True)
         return Response({
+            "status": status.HTTP_200_OK,
             "success": True,
             "message": "User List",
             "data": serializer.data
@@ -78,11 +87,13 @@ class UserProfileView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response({
+                "status": status.HTTP_201_CREATED,
                 "success": True,
                 "message": "User Created",
                 "data": serializer.data
             })
         return Response({
+            "status": status.HTTP_400_BAD_REQUEST,
             "success": False,
             "message": "User not created",
             "data": serializer.errors
@@ -93,11 +104,13 @@ class UserProfileView(APIView):
         if user:
             user.delete()
             return Response({
+                "status": status.HTTP_200_OK,
                 "success": True,
                 "message": "User Deleted",
                 "data": []
             })
         return Response({
+            "status": status.HTTP_400_BAD_REQUEST,
             "success": False,
             "message": "User not found",
             "data": []

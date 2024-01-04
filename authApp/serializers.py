@@ -13,3 +13,9 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
         fields = ["user","contact_number"]
+
+    def create(self, validated_data):
+        user_data = validated_data.pop('user')
+        user = User.objects.create(**user_data)
+        user_profile = UserProfile.objects.create(user=user, **validated_data)
+        return user_profile
