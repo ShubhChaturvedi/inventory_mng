@@ -4,4 +4,6 @@ authApp/__pycache__
 
 products/__pycache__
 
+analysis/__pycache__
+
 db.sqlite3
